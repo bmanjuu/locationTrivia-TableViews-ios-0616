@@ -50,7 +50,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trivia" forIndexPath:indexPath];
     
-    cell.textLabel.text = self.triviaArray[indexPath.row];
+    cell.textLabel.text = [self.triviaArray[indexPath.row] content];
     
     return cell;
 }

@@ -20,9 +20,10 @@
     [super viewDidLoad];
     
     self.tableView.accessibilityLabel = @"Locations Table";
-    self.tableView.accessibilityIdentifier = @"Locations Table"; 
+    self.tableView.accessibilityIdentifier = @"Locations Table";
     
-    // FISLocation *location = [[FISLocation alloc] init];
+    //MAKE SURE TO EMBED NAV CONTROLLER IN STORYBOARD. W/O IT, THERE IS AN ERROR OF INVALID SELECTOR SENT TO INSTANCE 
+    
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -50,7 +51,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"right detail" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"locationInfo" forIndexPath:indexPath];
     
     FISLocation *currentLocation = self.locations[indexPath.row];
     
@@ -101,12 +102,15 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    FISTriviaTableViewController *triviaVC = segue.destinationViewController;
+    FISTriviaTableViewController *triviaVC = (FISTriviaTableViewController *)segue.destinationViewController;
     
     NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
     FISLocation *selectedLocation = self.locations[selectedRow.row];
     
-    triviaVC.triviaArray = selectedLocation.trivia; 
+    triviaVC.triviaArray = selectedLocation.trivia;
+    
+//    NSIndexPath *index = self.tableView.indexPathForSelectedRow;
+//    triviaVC.triviaArray = [[self.locations objectAtIndex:index.row]trivia]; 
     
     //get selected row and use selection to get the the trivia info
     
